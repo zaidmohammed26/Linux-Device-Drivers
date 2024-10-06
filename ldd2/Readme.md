@@ -32,6 +32,11 @@ This folder also has an app.c which is an application which can make file operat
   ./a.out
   ```
 - You should now see the output.
+- You can even use echo and cat commands to make operations on the device file.
+  ```shell
+  echo "hello world" > /dev/my_driver2_file
+  cat /dev/my_driver2_file
+  ```
 - Lastly remove your module from the kernel and remove the device file.
   ```shell
   rmmod driver2
