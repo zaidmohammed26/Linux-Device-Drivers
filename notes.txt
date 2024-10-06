@@ -1,0 +1,30 @@
+STEPS:
+
+1. Write a module(driver code) -- dv1.c
+ * device registration in init_module --> cat proc/devices
+ * entry points(related to operations on the device- open, write, read, llseek,release)
+ * default functions: init_module, cleanup_module
+ * device unregistration in cleanup_module
+
+2. Makefile-- vim Makefile
+ * obj-m=:dv1.o
+
+3. make-C /lib/modules/$(uname -r)/build M=$PWD modules
+ -->dv1.ko
+ * demesg || cat sys/logs
+
+4. insmod dv1.ko ---> lsmod || cat /proc/modules
+
+5. Check major and minor numbers with "cat dev" or printing on kernel buffer.
+
+6. Create a device file
+ *mknod filepath/filename(dev/filename) c(character file) Majornumber Minornumber
+ * ls -l to check device file 
+
+7. Write application program.
+ * app.c --> implement system calls to interact with the device
+ * gcc app.c
+ * ./a.out ---> get output from the device
+ * dmesg to check entry points are invoked or not
+
+8. rmmod dv1 --> remove the driver from the kernel.
